@@ -1,50 +1,136 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Leaflet</title>
+	<title>NewZealandBothyTrail</title>
 	<meta charset="utf-8" />
-	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Load c3.css -->
-	<link href="css/c3.min.css" rel="stylesheet" type="text/css">
+	 
+	
 	<!-- Leaflet CSS -->
-	<link rel="stylesheet" type="text/css" href="css/leaflet.css">
+	<link rel="stylesheet" type="text/css" href="leaflet/leaflet.css">
+	<!-- Leaflet JS -->
+	<script type="text/javascript" src="leaflet/leaflet.js"></script>
+	<!-- Load C3 CSS -->
+	<link href="c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+	<!-- Load D3 -->
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<!-- Load d3.js and c3.js -->
+	<script src="c3-0.4.11/c3.min.js"></script>
+	<!-- Leaflet Elevation-->
+    <link rel="stylesheet" href="Leaflet.Elevation/dist/leaflet.elevation-0.0.4.css" />
+	<!-- Leaflet Elevation-->
+	<script src="Leaflet.Elevation/dist/leaflet.elevation-0.0.4.min.js"></script>
+	<!-- LeafletMarkerClusterPlugin CSS -->
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css" />
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css" />
+	<!-- Leaflet Search Plugin CSS -->
+	<link rel="stylesheet" href="leaflet-control-geocoder-1.5.4/dist/Control.Geocoder.css" />
+	<!-- Leaflet Measure Tool CSS -->
+	<link rel="stylesheet" type="text/css" href="leaflet-measure-master/dist/leaflet-measure.css" />
+	<!-- Leaflet Draw Control CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+	<!-- Leaflet ZoomHome -->
+	<link rel="stylesheet" href="leaflet.zoomhome-master/dist/leaflet.zoomhome.css"/>
+	
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<!-- MarkerCluster -->
-	<link rel="stylesheet" type="text/css" href="css/MarkerCluster.Default.css">
-	<!-- Leaflet Search CSS -->
-	<link rel="stylesheet" href="css/Control.Geocoder.css" />
-	<!-- Leaflet ZoomHome -->
-	<link rel="stylesheet" href="css/leaflet.zoomhome.css"/>
-	<!-- Load main.css -->
-	<link href="index.css" rel="stylesheet" type="text/css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 	
-
-	<!-- Load d3.js and c3.js -->
-	<script src="js/d3.min.js" charset="utf-8"></script>
-	<script src="js/c3.min.js"></script>
-	<!-- Leaflet JS -->
-	<script type="text/javascript" src="js/leaflet.js"></script>
+	
+	<style>
+		body,html {height: 100%; width:100%; margin: 0px; padding: 0px;}
+		#map1 {height: 60%; width: 100%; border: 2px grey solid;}
+		img {width: auto; height: auto}
+		#LiveLatLon {position: relative; left: 180px;}		
+		#LiveLatLon1 {position: relative; left: 200px;}		
+		
+		li:hover {background-color: white;}
+		#Impressum {
+			color: grey;
+			width: 80%;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 10px;
+		}	
+		
+	</style>
+	
+	
+	<!-- MarkerClusterPlugin JS-->
+	<script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js'></script>
+	<!-- Leaflet Search Plugin JS-->
+	<script src="leaflet-control-geocoder-1.5.4/dist/Control.Geocoder.js"></script>
+	<!-- Leaflet Measure Tool JS -->
+	<script src="leaflet-measure-master/dist/leaflet-measure.js"></script>
+	<!-- Leaflet Draw Control JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+	<!-- Leaflet ZoomHome -->
+	<script src="leaflet.zoomhome-master/dist/leaflet.zoomhome.min.js"></script>
 	<!-- jQuery JS-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- <script src="jquery-3.1.1.js"></script> -->
 	<!-- Bootstrap JS -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<!-- MarkerCluster -->
-	<script src="js/leaflet.markercluster.js" charset="utf-8"></script>
-	<!-- Proj4JS -->
-	<script src="js/proj4.js"></script>
-	<!-- Spin -->
-	<script src="js/spin.js" charset="utf-8"></script>
-	<script src="js/leaflet.spin.min.js" charset="utf-8"></script>
-	<!-- Leaflet Search JS-->
-	<script src="js/Control.Geocoder.js"></script>
-	<!-- Leaflet ZoomHome -->
-	<script src="js/leaflet.zoomhome.min.js"></script>
-	<!-- Main JS -->
-	<script src="index.js"></script>
 	
-	</head>
+	
+	<script src="proj4js-2.4.3/dist/proj4.js"></script>
+	
+	
+	
+	
+	
+	<!-- Daten JS -->
+	<script src="daten/bezirke_berlins.js"></script>
+	<script src="daten/marineReserve_geojson4326.js"></script>
+	<script src="daten/InternationallyRecognised_Protected_Area4326.js"></script>
+	<script src="daten/Huts_geojson4326.js"></script>
+	<script src="daten/Tracks_geojson4326.js"></script>
+	<script src="daten/FreedomCampingSpots_geojson4326.js"></script>
+	<script src="daten/Campsites_geojson4326.js"></script>
+	<script src="daten/Districts_geojson4326.js"></script>
+	<script src="daten/tracks_over1000_elev_WGS84.js"></script>
+	
+	
+	
+	
+	
+	<script>
+	$(document).ready(function() {
+		$('#button1').click(function() {
+			$('#lat').val( Math.round(meineKarte.getCenter().lat*10000) / 10000);
+			$('#lng').val( Math.round(meineKarte.getCenter().lng*10000) / 10000);
+			});
+			
+		$('#button2').click(function() {
+			$('#zoom').val(meineKarte.getZoom());
+			});
+		
+        $('#loginBtn').click(function() {
+			$("#user").val("");
+			$("#password").val("");
+			});  
+
+
+			$('#standortBtn').click(function() {
+			function onLocationFound(e) {
+				var radius = parseInt(e.accuracy/2);
+		
+			L.marker(e.latlng).addTo(meineKarte)
+				.bindPopup("Du bist " + radius + " Meter von diesem Punkt entfernt.").openPopup();
+			L.circle(e.latlng, radius).addTo(meineKarte);
+			}
+			meineKarte.on('locationfound', onLocationFound);
+			meineKarte.locate({setView: true, maxZoom: 16});	
+			});	
+			
+			
+ 
+
+		
+	});
+	</script>
+</head>
 
 <body>
 <div class='navbar navbar-default'>
@@ -66,26 +152,55 @@
 						<a data-toggle='dropdown' data-target='#' href='#'>Karte<span class='caret'></span></a> 
 						<ul class='dropdown-menu'>
 							
-							<li> <a href='#map1'>Go To Map</a> </li>
-							<li> <a href='#Karte'>Karteninfo</a> </li>
+							<li> <a href='#Karte'>Karte</a> </li>
+							<li> <a href='#Karteninfo'>Karteninfo</a> </li>
+							<li> <a href='#Höhenprofil'>Höhenprofil</a> </li>
 						</ul>
 						</li>
 						
 						<li> <a href='#Impressum'>Impressum</a> </li>
+	 
+						<li> <a data-toggle='modal' data-target='#ourModal' href='#' id='loginBtn'>Login</a>
+	
+	<!-- Modal, header, body footer alle geschwister im 3. div (modal-content)-->
+									<div class='modal fade' id='ourModal'>
+										<div class='modal-dialog'>
+											<div class='modal-content'>
+												<!-- Modal Header -->
+												<div class='modal-header'>
+													<button class='close' data-dismiss='modal'> &times </button> 
+													<h4 class='modal-title'> Login</h4>
+												</div>
+												<!-- Modal Body -->
+												<div class='modal-body'>
+													<label for 'user'><b>Username:</b></label>
+														<input type='text' class= 'form-control' name= '#' id= 'user' placeholder= 'username'>
+												</div>
+												<div class='modal-body'>
+													<label for 'password'><b>Password:</b></label>
+													<input type= 'password' class= 'form-control' id='password' name= '#' placeholder= 'password'><br>
+								
+								<!-- insert Button -->	<!-- insert function data dismiss -->
+													<button class='btn btn-primary' data-dismiss='modal'>login</button>
+													<form class="form">
+													<div class="checkbox">
+													<label><input type='checkbox'>Eingeloggt bleiben</label></div>
+												</div>
+												</div>
+											</div>
+										</div>
+								 </li>
+							</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-<!-- Div für Elevation -->
-<div id="elevation-div" class="container-fluid">
-    <h1>Höhenprofil</h1>
-	<div id="chart-div" class="container-fluid"></div>
-	<div id="close-div" class="container-fluid"><span id="close-x">&#10006;</span></div>
-</div><br><br>
-<!--Karten-Buttons-->
 <div class="container-fluid" id="Karte">
-
-	<div class="row" style="margin-left: 0px; margin-right: 0px;">
+<h1>Karte</h1></div><hr>
+			<!-- Bootstrap -->
+<div class="container-fluid" id="Karteninfo">
+	<h2>Karteninfo</h2><br>
+	<div class="row">
 		<div class="col-md-4">
 			<div class='btn-group-horizontal'>
 			<input class="btn btn-success" type="button" id="button1" value="GetMapCenter"</button>
@@ -127,14 +242,23 @@
 		</div>
 	</div>
 </div>
-<!-- Die Leaflet-Karte -->
+	
+		
+		
 <div id="map1">
-</div>
+	</div>
 	<br>
-<div class="container-fluid" id="Impressum" align="center"><hr>
+
+	<div class="container-fluid" id="Höhenprofil"><h1>Höhenprofil<h4>Spline-Interploation der Höhenwerte entlang der Streckenlänge</h4></h1></div><br>
+	<div class="container-fluid" id="chart"></div>
+	<br><div class="container-fluid" id="Daten"></div>
+	<br>
+	
+	
+	<div class="container-fluid" id="Impressum" align="center"><hr>
 		<h4>Impressum</h4>
 		<p>Verantwortlich für den Inhalt (gem. § 55 Abs. 2 RStV)</p>
-		<p>Svea Rautenberg, Moritz Scharnhop, Philipp Helbig</p>
+		<p>Svea Rautenberg, Moritz, Scharnhop, Philipp Helbig</p>
 		<p>GIS-Akademie<br>Gotenstraße 14, 20097 Hamburg
 		<br>Fon (040) 30 39 31 23 / Fax (040) 87 08 23 61
 		<br>Steuernummer: 22/520/08228, Amtsgericht Hamburg</p>
@@ -145,9 +269,549 @@
 		<p>§ 4 Besondere Nutzungsbedingungen<br>Soweit besondere Bedingungen für einzelne Nutzungen dieser Website von den vorgenannten Paragraphen abweichen, wird an entsprechender Stelle ausdrücklich darauf hingewiesen. In diesem Falle gelten im jeweiligen Einzelfall die besonderen Nutzungsbedingungen.</p>
 	</div>
 
-	<br>
-	<br>
+	<!-- <iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.topomap.co.nz/NZTopoMapEmbedded?v=2&ll=-43.374502,171.610474&z=8"></iframe><br /><small><a href="http://www.topomap.co.nz/NZTopoMap?v=2&ll=-43.374502,171.610474&z=8" style="text-align:left">View Larger Topographic Map</a></small> -->
 
+	
+	
+	<script>
+	
+	//Hintergrundkarten definieren
+	var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png' , {
+	maxZoom: 18,
+	<!-- minZoom: 2, -->
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '+' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Data &copy 2017 LINZ'});
+	
+	var OTM = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 16,
+	<!-- minZoom: 2, -->
+	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>), Data &copy 2017 LINZ'});
+	
+	var ESRI_Satellite = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	maxZoom: 18,
+	<!-- minZoom: 2, -->
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community, Data &copy 2017 LINZ'});
+	
+	var Stamen_Terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Data &copy 2017 LINZ',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 18,
+	ext: 'png'
+});
+
+	var Mapbox_Outdoor = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiODA4NzMwIiwiYSI6IjY0OW5LS0EifQ.o5wFCjlclI77_eXP7lIWLA' , {
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '+
+		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery <a href="http://mapbox.com">Mapbox</a>'
+});
+	
+	var myBounds = L.latLngBounds([-90,220],[90,-150]);
+		
+	//Variable meineKarte als Leaflet-Karte definieren mit Ausgangsposition und Zoom
+	//Hintergrundkarten in eigene Karten hinzufügen als Layer
+	var meineKarte = L.map('map1', {
+			center: [-40, 168],
+			zoom: 5,
+			minZoom: 2,
+			maxZoom: 18,
+			maxBounds: myBounds, 
+			zoomControl: false,
+			layers: [OSM, OTM, ESRI_Satellite, Stamen_Terrain, Mapbox_Outdoor]
+		});
+	
+	
+		//Overlays definieren und Daten als LayerGroup einfügen		
+		
+			//Die Bezirke.js (externe Datei) in Leaflet-GEOJSON umwandeln
+		var bezirkeGEOJSON = L.geoJson(bezirke);
+		
+			//Die Leaflet.geoJson nun als Layergroup defnieren
+		var bezirkeBerlins = L.layerGroup([bezirkeGEOJSON]);
+		
+			//Beispiel: Wie ein WMS Dienst in Leaflet einladen
+		var wms = L.tileLayer.wms('https://192.168.178.178:6443/arcgis/services/kurs1034/PhilippHelbig_NZ_topoTIFF/ImageServer/WMSServer', {layers:'PhilippHelbig_NZ_topoTIFF', TRANSPARENT: true, format: 'image/tif'});
+		var wmsLayer = L.layerGroup([wms]);
+		
+		//NZ-DOC Daten
+		var marineReserveGEOJSON = L.geoJson(marineReserve, {color: 'blue'});
+		var Marine_Reservoirs = L.layerGroup([marineReserveGEOJSON]);
+		var protectedAreasGEOJSON = L.geoJson(protectedArea, {color:'green'});
+		var protected_Areas = L.layerGroup([protectedAreasGEOJSON]);
+		
+		
+		
+		
+		// Lege neues Array "jsonArray" an
+		var JSONArray = [];
+	
+	
+		var proxy = 'proxy.php';
+			$.ajax({
+				method: "GET",
+				dataType: 'json',
+				url: proxy,
+				data: {
+				'url' : 'https://api.doc.govt.nz/v1/huts'
+				},
+				success: function(data, success) {
+				data = jQuery.parseJSON(data);
+				// For Schleife, nimmt Elemente aus JSON und schreibt sie in Variablen, am Ende pusht sie alles in das neue jsonArray
+				for (i=0; i < data.length; i++){
+					<!-- console.log(data[i]); -->
+					var AssetId = data[i].AssetId;
+					var Name = data[i].Name;
+					var Status = data[i].Status;
+					var Region = data[i].Region;
+					var x = data[i].x;
+					var y = data[i].y;
+					var coord = [x, y];
+				// Projektionen als String in Variablen schreiben, um sie unten zu verwenden
+				var proj2193 = 'PROJCS["NZGD2000 / New Zealand Transverse Mercator 2000",GEOGCS["NZGD2000",DATUM["New_Zealand_Geodetic_Datum_2000",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6167"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4167"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",173],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",1600000],PARAMETER["false_northing",10000000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AUTHORITY["EPSG","2193"]]'									
+
+				var proj4326 = 'GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]'
+	
+				// Die Koordinaten umprojizieren
+				var projcoord = proj4(proj2193,proj4326,coord);
+				// leeres JSON schreiben
+					var hutsObject = 
+						{"type": "Feature", "properties": {"AssetId": "", "Name":  "", "Status": "", "Region": ""}, "geometry": { "type":  "Point", "coordinates": [] }}
+				//Variablen von oben in das zuvor erzeugte JSON schreiben
+						hutsObject.properties.AssetId = AssetId;
+						hutsObject.properties.Name = Name;
+						hutsObject.properties.Status = Status;
+						hutsObject.properties.Region = Region;
+						hutsObject.geometry.coordinates = projcoord;
+				// Das JSON "hutsObject" in das jsonArray schreiben
+					JSONArray.push(hutsObject);
+					
+				};
+				
+			//Koordinaten-Nullwerte aus jsonArray rausfiltern
+				for (u=0; u < JSONArray.length; u++) {
+					if (JSONArray[u].geometry.coordinates[0] == 0 ) {
+						delete JSONArray[u];
+					}
+				};
+				//Filter, filtert "undefined" Werte aus dem Array, welche durch Objektlücken entstanden sind
+				JSONArray = JSONArray.filter( Boolean );
+				
+				// hutsGEOJONS schreiben
+				var APIhutsGEOJSONS = {
+				"type": "FeatureCollection", 
+				"crs": {"type": "name", "properties": {"name":"urn:ogc:def:crs:OGC:1.3:CRS84"
+				} }, 
+				"features": []};
+				
+				//hutsgeoJSON mit jsonArray füllen
+				APIhutsGEOJSONS.features = JSONArray;
+				var clustergroup = L.markerClusterGroup();
+				var APIHUTS = L.geoJson(APIhutsGEOJSONS, {onEachFeature: function(feature, layer){
+				layer.bindPopup('Name: ' + feature.properties.Name + '<br>' + ' Region: ' + feature.properties.Region + '<br>' + ' Status: ' + feature.properties.Status);}});
+				clustergroup.addLayer(APIHUTS).addTo(meineKarte);
+				
+				
+				},
+				error: function(jqxhr, textStatus, error) {
+				console.log("error", arguments);
+  }
+});
+
+
+//Das gleiche Spiel mit den Campsites
+	var jsonArrayCS = [];
+		
+		var proxyCS = 'proxyCS.php';
+			$.ajax({
+				method: "GET",
+				dataType: 'json',
+				url: proxy,
+				data: {
+				'url' : 'https://api.doc.govt.nz/v1/campsites'
+				},
+				success: function(data, success) {
+				data = jQuery.parseJSON(data);
+				// For Schleife, nimmt Elemente aus JSON und schreibt sie in Variablen, am Ende pusht sie alles in das neue jsonArray
+				for (i=0; i < data.length; i++){
+				var AssetId = data[i].AssetId;
+				var Name = data[i].Name;
+				var Status = data[i].Status;
+				var Locations = data[i].Locations;
+				var x = data[i].x;
+				var y = data[i].y;
+				
+				var coord = [x, y];
+	
+	// Projektionen als String in Variablen schreiben, um sie unten zu verwenden
+	var proj2193 = 'PROJCS["NZGD2000 / New Zealand Transverse Mercator 2000",GEOGCS["NZGD2000",DATUM["New_Zealand_Geodetic_Datum_2000",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6167"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4167"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",173],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",1600000],PARAMETER["false_northing",10000000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AUTHORITY["EPSG","2193"]]'
+	var proj4326 = 'GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]'
+	
+	// Die Koordinaten umprojizieren nach folgendem Schema
+	//var projcoord = proj4(fromProjection[, toProjection, coordinates])	
+	var projcoord = proj4(proj2193,proj4326,coord)
+	
+	// leeres JSON schreiben
+	var obj = {"type": "Feature", "properties": { "AssetId": "", "Name": "", "Status": "", "Locations": [] }, "geometry": { "type": "Point", "coordinates": [] } }
+
+	//Variablen von oben in das zuvor erzeugte JSON "obj" schreiben
+	obj.properties.AssetId = AssetId
+	obj.properties.Name = Name
+	obj.properties.Status = Status
+	obj.properties.Locations = Locations
+	obj.geometry.coordinates = projcoord
+	
+	// Das JSON "obj" in das jsonArray schreiben
+	jsonArrayCS.push(obj);
+	
+};
+
+		//Koordinaten-Nullwerte aus jsonArray rausfiltern
+			for (u=0; u < jsonArrayCS.length; u++) {
+			if (jsonArrayCS[u].geometry.coordinates[0] == 0 ) {
+				delete jsonArrayCS[u];
+			}
+		};
+
+		//Filter, filtert "undefined" Werte aus dem Array, welche durch Objektlücken entstanden sind
+		jsonArrayCS = jsonArrayCS.filter( Boolean );
+
+		// hutsgeoJSON schreiben
+		var CSgeoJSON = {
+		"type": "FeatureCollection",
+		"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+		"features": [] }
+
+		//hutsgeoJSON mit jsonArray füllen
+		CSgeoJSON.features = jsonArrayCS;
+		
+		var CSclustergroup = L.markerClusterGroup();
+				var APICS = L.geoJson(CSgeoJSON, {onEachFeature: function(feature, layer){
+				layer.bindPopup('Name: ' + feature.properties.Name + '<br>' + ' Location: ' + feature.properties.Locations + '<br>' + ' Status: ' + feature.properties.Status);}});
+				CSclustergroup.addLayer(APICS).addTo(meineKarte);
+				
+				
+				},
+				error: function(jqxhr, textStatus, error) {
+				console.log("error", arguments);
+  }
+});
+				
+				
+				
+		
+		//ClusterGroup() für Hütten erstellen und Layer hinzufügen
+		var markers = L.markerClusterGroup();
+		var HutsGEOJSON = L.geoJson(huts, {onEachFeature: function(feature, layer){
+				layer.bindPopup('Name: ' + '<b>'+feature.properties.DESCRIPTIO+'</b>' + '<br>' + 'Typ: ' + feature.properties.OBJECT_T_1 + '<br>' + 'Lat / Lon: ' + (feature.geometry.coordinates[1]).toFixed(4) + ' / ' + (feature.geometry.coordinates[0]).toFixed(4) + '<br>' + '<img src="images/jims_flat_hut.jpg">');}
+			});
+		markers.addLayer(HutsGEOJSON);
+		var Huts = L.layerGroup([markers]);
+		
+		//wanderwege Layer erstellen
+		var TracksGEOJSON = L.geoJson(tracks, {onEachFeature: function(feature, layer){
+			layer.bindPopup('Name: ' + feature.properties.CONSERVANC + '<br>' + 'Länge: ' + feature.properties.Shape_Leng + 'm.');}
+			});
+			
+		var Tracks = L.layerGroup([TracksGEOJSON]);
+		
+		//Höhenprofil erstellen
+				
+		var elev = L.control.elevation({
+	theme: "steelblue-theme",
+	position: "bottomright",
+	width: 700,
+	height: 300,
+    margins: { 
+      top: 50,
+      right: 50,
+      bottom: 30,
+      left: 80
+    },
+    useHeightIndicator: true, //if false a marker is drawn at map position
+    interpolation: "linear", //see https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_interpolate
+    hoverNumber: {
+        decimalsX: 3, //decimals on distance (always in km)
+        decimalsY: 0, //deciamls on https://www.npmjs.com/package/leaflet.coordinatesight (always in m)
+        formatter: undefined //custom formatter function may be injected
+    },
+    xTicks: undefined, //number of ticks in x axis, calculated by default according to width
+	yTicks: undefined, //number of ticks on y axis, calculated by default according to height
+	yAxisMin: undefined,
+    yAxisMax: undefined,
+    collapsed: true,  //collapsed mode, show chart on click or mouseover
+    imperial: false   //display imperial units instead of metric
+	});
+
+		elev.addTo(meineKarte);
+		
+		//wanderwege mit höheninfo 
+	var highlight = {
+    'color': 'yellow',
+    'weight': 2,
+    'opacity': 1
+};
+
+	var notHighlight = {
+    'color': 'blue',
+    'weight': 2,
+    'opacity': 1
+};
+		var lastClicked = false;
+		
+		var Tracks3D = L.geoJson(tracks3D_1000,{color:'brown',onEachFeature: function(feature,layer) {
+							layer.bindPopup('Länge des Tracks: ' + ((feature.properties.Shape_Leng)/1000).toFixed(2) + ' km.' + '<br>' + 'Das Höhenprofil des Tracks ist über den Button unten rechts zu sehen! Die Höhenwerte stehen unter der Karte.');
+						
+						layer.on('click', function(e){
+							
+							meineKarte.setView(e.latlng, 11);
+							layer.setStyle(highlight);
+							if (lastClicked) {
+							lastClicked.setStyle(notHighlight);
+							}
+							lastClicked = layer;
+						
+							elev.clear();
+							elev.addData(feature, Tracks3D);
+							
+							var Länge = ((feature.properties.Shape_Leng)/1000).toFixed(2);
+							var punkteanzahl = feature.geometry.coordinates.length;
+							var punkteabstand = ((Länge/punkteanzahl)).toFixed(2);
+							
+							var elevationCollection = ['Höhe in m'];
+							var xWerte = ['x'];
+							var elevationMax = [];
+							
+							for (c=0; c < feature.geometry.coordinates.length; c++){
+								
+								var featurePointDistance = (punkteabstand * c).toFixed(2);
+								var elevation = feature.geometry.coordinates[c][2];
+								elevationCollection.push(elevation);
+								elevationMax.push(elevation);
+								xWerte.push(featurePointDistance);
+					
+								};
+								
+							
+							<!-- console.log(elevationCollection); -->
+							<!-- console.log(xWerte); -->
+								
+								
+						
+							$('#chart').empty();
+								var chart = c3.generate({
+									bindto: '#chart',
+									data: {x: 'x', columns: [xWerte, elevationCollection ],
+									type: 'spline'
+									},									
+									
+									point: {show: false},
+
+									axis: {
+										rotated: false,
+										x: {
+										<!-- tick: {fit: true}, -->
+												
+												
+										label: {
+										text: 'Länge des Tracks in km',
+										position: 'outer-right'
+
+												}
+												
+											},
+										y: {
+										label: {
+										text: 'Höhe in m',
+										position: 'outer-top'
+												}
+											}
+
+									}
+									});
+									console.log(elevationMax);
+									var arr = elevationMax;
+									var ArrMax = Math.max.apply(Math, arr);
+									
+							
+		
+							document.getElementById('Daten').innerHTML = 
+							'<b>Länge des Tracks:</b> ' + (feature.properties.Shape_Leng/1000).toFixed(2) + ' km.' + '<br>' + '<b>Maximale Höhe:</b> ' + ArrMax + ' m.';
+							<!-- var container = el.onAdd(meineKarte); -->
+						<!-- document.getElementById('elevation-div').appendChild(container); -->
+						<!-- document.getElementById('elevation-div').removeChild(); -->
+												
+					
+						
+							<!-- data: { -->
+										<!-- names: { -->
+										<!-- data1: 'Elevation profile from selected line' -->
+									<!-- }, -->
+             <!-- // just taken some RANDOM fields to demonstrate -->
+             <!-- // how to draw the chart -->
+										<!-- columns: [ -->
+										<!-- ['data1', höhendaten										 -->
+											<!-- ] -->
+									<!-- ], -->
+										<!-- types: { -->
+										<!-- data1: 'line'                 -->
+									<!-- } -->
+									<!-- }, -->
+							<!-- axis: { -->
+										<!-- rotated: false, -->
+										<!-- x: { -->
+										<!-- label: { -->
+										<!-- text: 'Length in km', -->
+										<!-- position: 'outer-middle' -->
+
+												<!-- } -->
+											<!-- }, -->
+										<!-- y: { -->
+										<!-- label: { -->
+										<!-- text: 'Elevation in m', -->
+										<!-- position: 'outer-center' -->
+												<!-- } -->
+											<!-- } -->
+
+									<!-- } -->
+								<!-- }); -->
+							<!-- } -->
+						
+						
+		});
+		}});
+		
+		
+		var Tracks3DLayer = L.layerGroup([Tracks3D]);
+		
+	
+		
+		//districts einfügen
+		var DistrictsGEOJSON = L.geoJson(districts, {onEachFeature: function(feature, layer){
+		var distName = feature.properties.DistrictNa;
+		layer.bindPopup(distName);
+						}			
+				});
+		var Districts = L.layerGroup([DistrictsGEOJSON]);
+		
+		//freedomcampingplätze erstellen
+		var FreedomCampingGEOJSON = L.geoJson(FreedomCamping, {color: 'yellow', onEachFeature: function(feature,layer){
+			layer.bindPopup('Name: ' + feature.properties.Name);}
+			});
+		
+		var FreedomCampingSpots = L.layerGroup([FreedomCampingGEOJSON]);
+		
+		//ClusterGroup() für Campsiites erstellen und Layer hinzufügen
+		var markers2 = L.markerClusterGroup();
+		var CampsitesGEOJSON = L.geoJson(Campsites, {onEachFeature: function(feature, layer){
+				layer.bindPopup('Name: ' + '<b>'+feature.properties.DESCRIPTIO+'</b>' + '<br>' + 'Typ: ' + feature.properties.OBJECT_T_1 + '<br>' + 'Lat / Lon: ' + (feature.geometry.coordinates[1]).toFixed(4) + ' / ' + (feature.geometry.coordinates[0]).toFixed(4));}
+		});
+		markers2.addLayer(CampsitesGEOJSON);
+		var CampsiteSpots = L.layerGroup([markers2]);
+		
+			var newItems = new L.FeatureGroup().addTo(meineKarte);
+		
+			//Variable für Hintergrundkarten anlegen
+		var baseLayers = {"Satellit": ESRI_Satellite, "OpenStreetMap": OSM, "OpenTopoMap": OTM, "Terrain": Stamen_Terrain, "Mapbox_Outdoors": Mapbox_Outdoor};
+			//Variable für Overlays anlegen
+		var overlays = {"Bezirke": bezirkeBerlins, "Marine Reservois": Marine_Reservoirs, "protected Areas": protected_Areas, "Tracks": Tracks, "FreedomCamping": FreedomCampingSpots, "Tracks3D": Tracks3DLayer, "Huts": Huts, "Official Campsites": CampsiteSpots, "Regionen": Districts, "WMS_NewYork": wmsLayer, "DrawLayer": newItems};
+		
+	var zoomHome = L.Control.zoomHome({zoomHomeTitle: 'ZoomHome'});
+	zoomHome.addTo(meineKarte);
+	//Leaflet Kontrollbutton anlegen mit Hintergrundkarten und Overlays
+	L.control.layers(baseLayers, overlays).addTo(meineKarte);
+	//Maßstab hinzufügen
+	L.control.scale().addTo(meineKarte);
+	<!-- Leaflet Search Funktion hinzufügen -->
+	L.Control.geocoder().addTo(meineKarte);
+	<!-- Leaflet Measure Tool -->
+	var measureControl = L.control.measure({ position: 'topright', primaryLengthUnit: 'kilometers', primaryAreaUnit: 'hectares'});
+	measureControl.addTo(meineKarte);
+	<!-- Leaflet Draw Control -->		
+	var drawControl = new L.Control.Draw({
+				draw: true,
+				edit: {featureGroup: newItems, edit: true},
+				save: true
+		});
+		meineKarte.addControl(drawControl);
+
+	meineKarte.on(L.Draw.Event.CREATED, function(e) {
+			var drawlayer = e.layer;
+			newItems.addLayer(drawlayer);
+		});
+	
+		
+	
+
+	//Funktion: Auf Klick auf karte zeige Koordinaten im PopUP-Fenster an
+	<!-- function onMapClick(e) { -->
+		<!-- var popup = L.popup();  -->
+			<!-- popup  -->
+			<!-- .setLatLng(e.latlng) -->
+			<!-- .setContent("Koordinaten an dieser Stelle: " + e.latlng.toString() + ". Die Koordinaten werden in einer Tabelle gespeichert!") -->
+			<!-- .openOn(meineKarte) -->
+		 <!-- meineKarte.panTo(popup.getLatLng()); -->
+		 <!-- var lat = meineKarte.getCenter().lat; -->
+		 <!-- var lon = meineKarte.getCenter().lng; -->
+		 <!-- $('#Koordinaten').append('<li>' + lat + ' , ' + lon + '</li>'); -->
+		
+		<!-- }; -->
+	<!-- meineKarte.on('click', onMapClick); -->
+	<!-- meineKarte.off('click', onMapClick); -->
+
+	//mit Maus über die karte fahren und Koordinaten ausgeben
+	function onMapMousemove(e) {
+		lat = e.latlng.lat;
+		lon = e.latlng.lng;
+		$('#LiveLatLon').val(lat);
+		$('#LiveLatLon1').val(lon);
+	};
+	meineKarte.on('mousemove', onMapMousemove); 
+		
+	//beim Verändern der Kartengröße Karte neu skalieren und eine Nachricht ausgeben in der Konsole
+	meineKarte.on('resize', function(e) {
+		//alert('Karte angepasst');
+	});
+	//beim Verschieben der Karte das aktuelle Kartenzentrum und den aktuellen Zoom ausgeben 
+	meineKarte.on('moveend', function(e) {
+		$('#lat').val('' + meineKarte.getCenter().lat);
+		$('#lng').val('' + meineKarte.getCenter().lng);
+		$('#zoom').html('Zoomstufe: ' + meineKarte.getZoom());
+	});
+	//Beim Rein/Raus-Zoomen den neuen Zoom angeben
+	meineKarte.on('zoomend', function(e) {
+		$('#zoom').val(meineKarte.getZoom());
+	});
+
+//Übung Schleife
+<!-- var zentroide_germany = [ -->
+					<!-- [10.0108,53.5472,'Hamburg'], -->
+					<!-- [9.1595,52.7682,'Niedersachsen'], -->
+					<!-- [8.7417,53.1981,'Bremen'], -->
+					<!-- [7.5617,51.4798,'Nordrhein-Westfalen'], -->
+					<!-- [9.0313,50.6033,'Hessen'], -->
+					<!-- [7.4493,49.9138,'Rheinland-Pfalz'], -->
+					<!-- [9.0472,48.5440,'Baden-Württemberg'], -->
+					<!-- [11.4199,48.9478,'Bayern'], -->
+					<!-- [6.9515,49.3843,'Saarland'], -->
+					<!-- [13.4020,52.5013,'Berlin'], -->
+					<!-- [13.3967,52.4732,'Brandenburg'], -->
+					<!-- [12.5342,53.7530,'Mecklenburg-Vorpommern'], -->
+					<!-- [13.3486,51.0521,'Sachsen'], -->
+					<!-- [11.7003,52.0133,'Sachsen-Anhalt'], -->
+					<!-- [11.0272,50.9039,'Thüringen'], -->
+					<!-- [9.8107,54.1847,'Schleswig-Holstein']]; -->
+
+	
+<!-- for (var i = 0; i < zentroide_germany.length; i++){ -->
+	<!-- var lat = zentroide_germany[i][1]; -->
+	<!-- var lon = zentroide_germany [i][0]; -->
+	<!-- var name = zentroide_germany [i][2];	 -->
+	<!-- L.marker([lat,lon]).bindPopup(name).addTo(meineKarte);}; -->
+	
+	
+
+	
+</script>
 
 </body>
 	
