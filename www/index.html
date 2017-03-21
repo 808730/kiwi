@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet</title>
+	<meta charset="utf-8" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Load c3.css -->
+	<link href="css/c3.min.css" rel="stylesheet" type="text/css">
+	<!-- Leaflet CSS -->
+	<link rel="stylesheet" type="text/css" href="css/leaflet.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- MarkerCluster -->
+	<link rel="stylesheet" type="text/css" href="css/MarkerCluster.Default.css">
+	<!-- Leaflet Search CSS -->
+	<link rel="stylesheet" href="css/Control.Geocoder.css" />
+	<!-- Leaflet ZoomHome -->
+	<link rel="stylesheet" href="css/leaflet.zoomhome.css"/>
+	<!-- Load main.css -->
+	<link href="index.css" rel="stylesheet" type="text/css">
+	
+
+	<!-- Load d3.js and c3.js -->
+	<script src="js/d3.min.js" charset="utf-8"></script>
+	<script src="js/c3.min.js"></script>
+	<!-- Leaflet JS -->
+	<script type="text/javascript" src="js/leaflet.js"></script>
+	<!-- jQuery JS-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- MarkerCluster -->
+	<script src="js/leaflet.markercluster.js" charset="utf-8"></script>
+	<!-- Proj4JS -->
+	<script src="js/proj4.js"></script>
+	<!-- Spin -->
+	<script src="js/spin.js" charset="utf-8"></script>
+	<script src="js/leaflet.spin.min.js" charset="utf-8"></script>
+	<!-- Leaflet Search JS-->
+	<script src="js/Control.Geocoder.js"></script>
+	<!-- Leaflet ZoomHome -->
+	<script src="js/leaflet.zoomhome.min.js"></script>
+	<!-- Main JS -->
+	<script src="index.js"></script>
+	
+	</head>
+
+<body>
+<div class='navbar navbar-default'>
+			<div class='container-fluid'>
+				<div class='navbar-header'>
+				
+					<button class='navbar-toggle' data-toggle='collapse' data-target='#navbarInhalt'>
+						<span class='icon-bar'></span>
+						<span class='icon-bar'></span>
+						<span class='icon-bar'></span>
+					</button>
+					
+					<a class='navbar-brand' href='index.html'>Home</a>
+				</div>
+				
+				<div id='navbarInhalt' class='collapse navbar-collapse'>
+					<ul class='nav navbar-nav'>
+						<li class='dropdown'> 
+						<a data-toggle='dropdown' data-target='#' href='#'>Karte<span class='caret'></span></a> 
+						<ul class='dropdown-menu'>
+							
+							<li> <a href='#map1'>Go To Map</a> </li>
+							<li> <a href='#Karte'>Karteninfo</a> </li>
+						</ul>
+						</li>
+						
+						<li> <a href='#Impressum'>Impressum</a> </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+<!-- Div für Elevation -->
+<div id="elevation-div" class="container-fluid">
+    <h1>Höhenprofil</h1>
+	<div id="chart-div" class="container-fluid"></div>
+	<div id="close-div" class="container-fluid"><span id="close-x">&#10006;</span></div>
+</div><br><br>
+<!--Karten-Buttons-->
+<div class="container-fluid" id="Karte">
+
+	<div class="row" style="margin-left: 0px; margin-right: 0px;">
+		<div class="col-md-4">
+			<div class='btn-group-horizontal'>
+			<input class="btn btn-success" type="button" id="button1" value="GetMapCenter"</button>
+			<input class="btn btn-success" type="button" id="button2" value="GetMapZoom"</button>
+			<input class="btn btn-success" type="button" id="standortBtn" value="GetYourLocation"</button>
+			<input class="btn btn-primary" data-toggle="modal" data-target="#unserModal" value="GetMapInfo"></button>
+		<div class='modal fade' id='unserModal'>
+			<div class='modal-dialog'>
+				<div class='modal-content'>
+					<!-- Modal MapInfo -->
+					<div class='modal-header'>
+					<button class='close' data-dismiss='modal'>&times;</button>
+						<h4 class='modal-title'>Karteninfo</h4>
+					</div>
+					<div class='modal-body'>
+						<p>Kartenprodukt: &copy Leaflet, Homepage: <a href='http://leafletjs.com/' target='_blank'>http://leafletjs.com/</a>.</p>
+						<p>Hintergrundkarten: <a href="https://leaflet-extras.github.io/leaflet-providers/preview/" target='_blank'>&copy Github Free Tile Provider</a>.</p>
+						<p>Die Daten werden bereitgestellt von: &copy LINZ DATA SERVICE, <a href="https://data.linz.govt.nz/" target='_blank'>https://data.linz.govt.nz/</a>. Der Datenzugang erfolgt über den FTP-Server des <a href="http://www.doc.govt.nz/our-work/maps-and-data/" target='_blank'>Department of Conservation NewZealand (DOC)</a>: <a href="ftp://ftp.doc.govt.nz/Public/GIS/" target='_blank'>ftp://ftp.doc.govt.nz/Public/GIS/</a>.</p>
+						<p>Datennutzungsbestimmungen: <a href="http://www.doc.govt.nz/our-work/maps-and-data/terms-and-conditions/" target='_blank'>Terms and Conditions</a>.</p>
+					</div>
+					
+					
+					<div class='modal-footer'>
+						<p align='left'>Eure Webmapper: Svea Rautenberg, Moritz Scharnhop, Philipp Helbig :) </p>
+						<button class='btn btn-info' data-dismiss='modal'>OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+			</div></div>
+		<div class="col-md-4" style="width: 650px;">
+			MapCenter (Lat/Lon):
+			<input type= 'text' id='lat'>
+			<input type= 'text' id='lng'>
+			MapZoom:<input type= 'text' id='zoom' style="width: 54px;"></div>
+		<div class="col-md-4" style="width: 600px;">
+			<input type='text' id='LiveLatLon'>
+			<input type='text' id='LiveLatLon1'><br><br>
+		</div>
+	</div>
+</div>
+<!-- Die Leaflet-Karte -->
+<div id="map1">
+</div>
+	<br>
+<div class="container-fluid" id="Impressum" align="center"><hr>
+		<h4>Impressum</h4>
+		<p>Verantwortlich für den Inhalt (gem. § 55 Abs. 2 RStV)</p>
+		<p>Svea Rautenberg, Moritz Scharnhop, Philipp Helbig</p>
+		<p>GIS-Akademie<br>Gotenstraße 14, 20097 Hamburg
+		<br>Fon (040) 30 39 31 23 / Fax (040) 87 08 23 61
+		<br>Steuernummer: 22/520/08228, Amtsgericht Hamburg</p>
+		<p>Disclaimer - rechtliche Hinweise</p>
+		<p>§ 1 Haftungsbeschränkung<br>Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Anbieter übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte. Die Nutzung der Inhalte der Website erfolgt auf eigene Gefahr des Nutzers. Namentlich gekennzeichnete Beiträge geben die Meinung des jeweiligen Autors und nicht immer die Meinung des Anbieters wieder. Mit der reinen Nutzung der Website des Anbieters kommt keinerlei Vertragsverhältnis zwischen dem Nutzer und dem Anbieter zustande.</p>
+		<p>§ 2 Externe Links<br>Diese Website enthält Verknüpfungen zu Websites Dritter ("externe Links"). Diese Websites unterliegen der Haftung der jeweiligen Betreiber. Der Anbieter hat bei der erstmaligen Verknüpfung der externen Links die fremden Inhalte daraufhin überprüft, ob etwaige Rechtsverstöße bestehen. Zu dem Zeitpunkt waren keine Rechtsverstöße ersichtlich. Der Anbieter hat keinerlei Einfluss auf die aktuelle und zukünftige Gestaltung und auf die Inhalte der verknüpften Seiten. Das Setzen von externen Links bedeutet nicht, dass sich der Anbieter die hinter dem Verweis oder Link liegenden Inhalte zu Eigen macht. Eine ständige Kontrolle der externen Links ist für den Anbieter ohne konkrete Hinweise auf Rechtsverstöße nicht zumutbar. Bei Kenntnis von Rechtsverstößen werden jedoch derartige externe Links unverzüglich gelöscht.</p>
+		<p>§ 3 Urheber- und Leistungsschutzrechte<br>Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheber- und Leistungsschutzrecht. Jede vom deutschen Urheber- und Leistungsschutzrecht nicht zugelassene Verwertung bedarf der vorherigen schriftlichen Zustimmung des Anbieters oder jeweiligen Rechteinhabers. Dies gilt insbesondere für Vervielfältigung, Bearbeitung, Übersetzung, Einspeicherung, Verarbeitung bzw. Wiedergabe von Inhalten in Datenbanken oder anderen elektronischen Medien und Systemen. Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. Die unerlaubte Vervielfältigung oder Weitergabe einzelner Inhalte oder kompletter Seiten ist nicht gestattet und strafbar. Lediglich die Herstellung von Kopien und Downloads für den persönlichen, privaten und nicht kommerziellen Gebrauch ist erlaubt. Die Darstellung dieser Website in fremden Frames ist nur mit schriftlicher Erlaubnis zulässig.</p>
+		<p>§ 4 Besondere Nutzungsbedingungen<br>Soweit besondere Bedingungen für einzelne Nutzungen dieser Website von den vorgenannten Paragraphen abweichen, wird an entsprechender Stelle ausdrücklich darauf hingewiesen. In diesem Falle gelten im jeweiligen Einzelfall die besonderen Nutzungsbedingungen.</p>
+	</div>
+
+	<br>
+	<br>
+
+
+</body>
+	
+</html>
+	
